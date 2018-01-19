@@ -35,7 +35,7 @@ app.post('/api/meetups', MeetupController.create);
 app.get('/api/meetups/public', MeetupController.getPublicMeetups);
 app.get('/api/meetups/private', authCheck, MeetupController.getPrivateMeetups);
 
-app.listen(3333);
+app.listen(3333 || process.env.PORT);
 console.log('Listening on localhost:3333');
  // Once started, connect to Mongo through Mongoose
 mongoose.connect(MongoDBUrl, {}).then(() => { console.log(`Connected to Mongo server`) }, err => { console.log(err) });
