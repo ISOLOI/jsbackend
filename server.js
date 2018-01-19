@@ -6,6 +6,7 @@ const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const MeetupController =  require('./src/controllers/meetup');
 const config = require('./config.js'); // remove .example from /server/config.js.example
@@ -30,6 +31,13 @@ const authCheck = jwt({
     issuer: `https://${config.CLIENT_DOMAIN}/`,
     algorithms: ['RS256']
 });
+var uri = "mongodb+srv://coding-saints:q9w40589q@cluster0-oqyzm.mongodb.net/Cluster0"
+MongoClient.connect(uri, function(err, client) {
+   const collection = client.db("test").collection("devices");
+   // perform actions on the collection object
+   client.close();
+});
+
 
 app.post('/api/meetups', MeetupController.create);
 app.get('/api/meetups/public', MeetupController.getPublicMeetups);
