@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const MeetupController =  require('./src/controllers/meetup');
 const config = require('./config.js'); // remove .example from /server/config.js.example
 //const MongoDBUrl = 'mongodb://localhost:27017/meetupapi';
-const MongoDBUrl = 'mongodb://coding-saints:952015start@ds029338.mlab.com:29338/meet';
+const MongoDBUrl = `mongodb://coding-saints:${malb_key}@ds029338.mlab.com:29338/meet`;
 var port = 3333 || process.env.PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,7 +31,7 @@ const authCheck = jwt({
     issuer: `https://${config.CLIENT_DOMAIN}/`,
     algorithms: ['RS256']
 });
-var uri = "mongodb+srv://coding-saints:q9w40589q@cluster0-oqyzm.mongodb.net/Cluster0"
+var uri = `mongodb+srv://coding-saints:${mlab_key2}@cluster0-oqyzm.mongodb.net/Cluster0`
 MongoClient.connect(uri, function(err, client) {
    const collection = client.db("test").collection("devices");
    // perform actions on the collection object
